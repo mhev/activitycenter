@@ -1,0 +1,50 @@
+@model Party
+<h1>Dojo Activity Center</h1>
+<a href="/success"><button class="btn btn-info">Home</button></a>
+<a href="/logout"><button class="btn btn-info">Logout</button></a>
+<h3>Create an Activity</h3>
+<form action="/party" method="post">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Title:</label>
+            <span asp-validation-for="Title" class="text-danger"></span>
+            <input type="text" name="Title" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Time:</label>
+            <span asp-validation-for="Time" class="text-danger"></span>
+            <input type="time" name="Time" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Date:</label>
+            <span asp-validation-for="Date" class="text-danger"></span>
+            <input type="date" name="Date" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Duration:</label>
+            <span asp-validation-for="Duration" class="text-danger"></span>
+            <input type="number" name="Duration" class="form-control">
+        <select name="Type">
+                <option>Hours</option>
+                <option>Days</option>
+        </select>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="form-group">
+            <label>Description:</label>
+            <span asp-validation-for="Description" class="text-danger"></span>
+            <input type="text" name="Description" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <input type="submit" class="btn btn-success">
+    </div>
+</form>

@@ -1,0 +1,20 @@
+@model Party
+<h1>Dojo Activity Center</h1>
+<a href="/success"><button class="btn btn-info">Home</button></a>
+<a href="/logout"><button class="btn btn-info">Logout</button></a>
+
+
+<h2>@Model.Title</h2>
+@{
+<h5>Event Coordinator: @Model.Planner.Name</h5>
+}
+<h5>Description: @Model.Description</h5>
+<h5>Participants:</h5>
+<ul>
+    @foreach (Join j in @ViewBag.Joins)
+    {
+        <li>@j.Joiner.Name</li>
+    }
+    
+</ul>
+

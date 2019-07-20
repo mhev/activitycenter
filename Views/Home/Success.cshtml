@@ -1,0 +1,61 @@
+<h1>Dojo Activity Center</h1>
+
+<h4>Welcome, @ViewBag.u.Name</h4>
+
+<a href="/logout"><button class="btn btn-info">Logout</button></a>
+<br>
+<br>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Activity</th>
+      <th scope="col">Date and Time</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Event Coordinator</th>
+      <th scope="col">No. of Participants</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(Party party in ViewBag.Partys)
+    {
+    <tr>
+      <td><a href="/details/@party.PartyId">@party.Title</td>
+      <td>@party.Date.ToString("MM/dd") @@ @party.Time.ToString("hh':'mm")</td>
+      <td>@party.Duration @party.Type</td>
+      <td>@party.Planner.Name</td>
+      <td>@party.AttendingUsers.Count</td>
+      <td>
+        @{
+          if(@ViewBag.UserId == @party.PlannerId)
+          {
+            <a href="/delete/@party.PartyId">Delete</a>
+          }
+          else
+          {
+              bool joined = false;
+              foreach(Join j in @party.AttendingUsers)
+              {
+                if(j.UserId == @ViewBag.UserId)
+                {
+                  joined = true;
+                }
+              }
+              if(joined)
+              {
+                <a href="/leave/@party.PartyId">Leave</a>
+              }
+              else
+              {
+                <a href="/join/@party.PartyId">Join</a>
+              } 
+          }
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+<a href="/party/new"><button class="btn btn-primary">Add a new Activity</button></a>
